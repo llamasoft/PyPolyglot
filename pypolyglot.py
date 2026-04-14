@@ -98,7 +98,7 @@ class PyPoly:
     def create_pyarchive(cls, payload: str) -> bytes:
         """Creates an Python archive and returns it as bytes."""
         buf = io.BytesIO()
-        with zipfile.ZipFile(buf, "wb") as zf:
+        with zipfile.ZipFile(buf, "w") as zf:
             zf.writestr("__main__.py", payload, compress_type=zipfile.ZIP_DEFLATED)
         return buf.getvalue()
 
