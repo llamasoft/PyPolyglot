@@ -106,7 +106,7 @@ class PyPoly:
     def plain_to_pyarchive(cls, input_path: pathlib.Path, payload: str, output_path: pathlib.Path) -> None:
         """Creates an Python archive by simply appending a formatted zip archive."""
         log.debug("Input path appears to be a generic file")
-        output_path.mkdir(parents=True, exist_ok=True)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(input_path, output_path)
         with open(output_path, "ab") as f:
             log.info("Creating Python script payload")
@@ -116,7 +116,7 @@ class PyPoly:
     def zip_to_pyarchive(cls, input_path: pathlib.Path, payload: str, output_path: pathlib.Path) -> None:
         """Creates an Python archive by adding a __main__.py to an existing zip archive."""
         log.debug("Input path appears to be a zip archive")
-        output_path.mkdir(parents=True, exist_ok=True)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(input_path, output_path)
         with zipfile.ZipFile(output_path, "a") as output_zf:
             log.info("Adding Python script payload")
